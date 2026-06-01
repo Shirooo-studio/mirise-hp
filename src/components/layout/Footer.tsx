@@ -23,7 +23,7 @@ const infoLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#1a1618] text-white/60">
+    <footer className="text-white/60" style={{ background: "linear-gradient(160deg, #1e1830, #162630)" }}>
       {/* グラデーションライン（上部） */}
       <div
         className="h-[3px]"
@@ -49,9 +49,6 @@ export function Footer() {
               <div>
                 <p className="text-sm font-bold text-white leading-snug">
                   訪問看護ステーションミライズ
-                </p>
-                <p className="text-[10px] text-white/40 tracking-wider">
-                  MIRISE Visiting Nursing Station
                 </p>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
@@ -143,23 +144,23 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* モバイル：3つの帯を縦に重ねる */}
+          {/* モバイル：3つの帯を縦に重ねる（常時カラー） */}
           <div className="flex sm:hidden flex-col w-full">
             <a
               href="#worries"
-              className="w-full py-5 flex items-center justify-center text-sm font-bold bg-white/70 text-[#EC99D0] hover:bg-[#EC99D0] hover:text-white transition-all border-t border-[#EC99D0]/30"
+              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#EC99D0]/30 text-[#c45898] border-t border-[#EC99D0]/40"
             >
               こんなお悩みありませんか？
             </a>
             <a
               href="#what-we-can-do"
-              className="w-full py-5 flex items-center justify-center text-sm font-bold bg-white/70 text-[#B3AEDB] hover:bg-[#B3AEDB] hover:text-white transition-all border-t border-[#B3AEDB]/30"
+              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#B3AEDB]/30 text-[#7a74b4] border-t border-[#B3AEDB]/40"
             >
               訪問看護でできること
             </a>
             <a
               href="#about"
-              className="w-full py-5 flex items-center justify-center text-sm font-bold bg-white/70 text-[#84D3F4] hover:bg-[#84D3F4] hover:text-white transition-all border-t border-[#84D3F4]/30 border-b border-[#84D3F4]/20"
+              className="w-full py-5 flex items-center justify-center text-base font-bold bg-[#84D3F4]/30 text-[#3d8cb4] border-t border-[#84D3F4]/40 border-b border-[#84D3F4]/30"
             >
               ミライズについて
             </a>
@@ -698,167 +699,144 @@ export default function HomePage() {
 
 
         {/* ── HOW TO START ── */}
-        <section className="py-24 px-[5%]" style={{ backgroundColor: "#231F20" }}>
+        <section
+          className="py-24 px-[5%]"
+          style={{ background: "linear-gradient(160deg, rgba(253,242,250,0.90), rgba(237,246,255,0.90))" }}
+        >
           <div className="max-w-[1100px] mx-auto">
             <FadeIn direction="up">
-              <SectionLabel>HOW TO START</SectionLabel>
-              <SectionTitle light>ご利用開始までの流れ</SectionTitle>
-              <p className="text-sm text-white/60 leading-loose mb-12 max-w-2xl">
-                はじめての方でも安心して進められるよう、丁寧にサポートします。
-              </p>
+              <SectionLabel color="#B3AEDB">HOW TO START</SectionLabel>
+              <h2
+                className="text-4xl font-bold mb-16 text-[#231F20]"
+                style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+              >
+                ご利用開始までの流れ
+              </h2>
             </FadeIn>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* ── ステップカード（横並び） ── */}
+            <div className="flex flex-col md:flex-row items-stretch gap-3 md:gap-0">
               {[
                 {
-                  step: "STEP 1",
-                  title: "まずはご相談",
-                  desc: "お電話・LINEなどでお気軽にご連絡ください。「訪問看護って何？」「うちは対象になる？」という段階でも大丈夫です。",
+                  title: "お問い合わせ",
+                  sub: "LINE・フォームからお気軽に",
+                  color: "#EC99D0",
+                  iconBg: "radial-gradient(circle at 35% 30%, #eda8d0, #c45898)",
+                  arrowColor: "rgba(236,153,208,0.55)",
+                  icon: (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  ),
                 },
                 {
-                  step: "STEP 2",
-                  title: "無料でご訪問・アセスメント",
-                  desc: "担当の看護師がご自宅に伺い、現在の状況やご希望をお聞きします。無理に決める必要はありません。",
+                  title: "面談・ヒアリング",
+                  sub: "看護師による状況確認",
+                  color: "#B3AEDB",
+                  iconBg: "radial-gradient(circle at 35% 30%, #b0aade, #7270b8)",
+                  arrowColor: "rgba(179,174,219,0.55)",
+                  icon: (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  ),
                 },
                 {
-                  step: "STEP 3",
-                  title: "ケアプランのご提案",
-                  desc: "お話をもとに、その方に合ったケアプランをご提案します。主治医・ケアマネージャー・支援機関とも連携します。",
+                  title: "サービス開始",
+                  sub: "ご家庭・学校などへ訪問",
+                  color: "#9EDED0",
+                  iconBg: "radial-gradient(circle at 35% 30%, #5ec4ae, #2d8878)",
+                  arrowColor: "",
+                  icon: (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                      <polyline points="9 22 9 12 15 12 15 22"/>
+                      <line x1="12" y1="6" x2="12" y2="9"/>
+                      <line x1="10.5" y1="7.5" x2="13.5" y2="7.5"/>
+                    </svg>
+                  ),
                 },
-                {
-                  step: "STEP 4",
-                  title: "訪問看護スタート",
-                  desc: "週1〜3回のペースで、自宅への訪問を開始します。状況に合わせて柔軟に対応します。",
-                },
-              ].map((item, i) => (
-                <FadeIn key={item.step} direction="up" delay={i * 0.1}>
-                  <div className="relative bg-white/5 rounded-2xl p-6 border border-white/10 h-full">
-                    <p className="text-sm font-bold tracking-widest text-[#EC99D0] mb-3">{item.step}</p>
-                    <p className="font-bold text-base text-white mb-3">{item.title}</p>
-                    <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
-                    {i < 3 && (
-                      <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-white/25 text-xl z-10">
-                        →
+              ].map((step, i, arr) => (
+                <Fragment key={i}>
+                  <FadeIn direction="up" delay={i * 0.1} className="flex-1 min-w-0">
+                    <div className="bg-white/90 rounded-2xl shadow-sm px-4 py-8 flex flex-col items-center text-center h-full">
+                      {/* STEP ラベル */}
+                      <p className="text-sm font-bold tracking-widest mb-2" style={{ color: step.color }}>
+                        STEP {i + 1}
+                      </p>
+                      {/* 区切り線 */}
+                      <div className="w-12 h-0.5 rounded-full mb-5" style={{ background: step.color }} />
+                      {/* タイトル */}
+                      <p
+                        className="text-2xl font-bold text-[#231F20] mb-5 leading-snug"
+                        style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+                      >
+                        {step.title}
+                      </p>
+                      {/* アイコン丸 */}
+                      <div
+                        className="w-20 h-20 rounded-full flex items-center justify-center mb-5 flex-shrink-0 shadow-md"
+                        style={{ background: step.iconBg, color: "white" }}
+                      >
+                        {step.icon}
                       </div>
-                    )}
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
-
-        {/* ── FAQ ── */}
-        <section className="py-24 px-[5%] bg-white/70">
-          <div className="max-w-[800px] mx-auto">
-            <FadeIn direction="up">
-              <SectionLabel>FAQ</SectionLabel>
-              <SectionTitle>よくあるご質問</SectionTitle>
-            </FadeIn>
-
-            <div className="mt-8 space-y-3">
-              {[
-                {
-                  q: "費用はどれくらいかかりますか？",
-                  a: "医療保険や障害福祉サービスが適用されるため、自己負担は1〜3割程度です。お住まいの地域や状況によって異なりますので、まずはご相談ください。",
-                },
-                {
-                  q: "うちの子（自分）は対象になりますか？",
-                  a: "精神・知的障害のある方（診断の有無は問いません）、およびそのご家族が対象です。年齢は乳幼児から成人まで幅広く対応しています。まずはお気軽にお問い合わせください。",
-                },
-                {
-                  q: "主治医がいないと利用できませんか？",
-                  a: "訪問看護の利用には医師の指示書が必要です。現在かかりつけ医がいない場合も、ご相談いただければ一緒に対応策を考えます。",
-                },
-                {
-                  q: "療育施設とは何が違いますか？",
-                  a: "療育施設は通所が基本で、乳幼児が主な対象です。訪問看護は自宅に看護師が来るため通所不要で、小学生以上・成人の方にも利用できます。また医療的なケアやメンタルサポートも行える点が特徴です。",
-                },
-                {
-                  q: "相談員・支援者として紹介したいのですが。",
-                  a: "ありがとうございます。支援者の方からのご紹介・連携も歓迎しております。お気軽にご連絡ください。",
-                },
-                {
-                  q: "まず話を聞いてもらうだけでも大丈夫ですか？",
-                  a: "もちろんです。「使えるかどうかわからない」「どうすれば良いかわからない」という段階でもお声がけください。一緒に考えます。",
-                },
-              ].map((item) => (
-                <FadeIn key={item.q} direction="up" delay={0.05}>
-                  <details className="group rounded-2xl border border-[#f0d0e8] overflow-hidden">
-                    <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-bold text-base text-[#231F20] hover:bg-[#fef6fa] transition-colors [list-style:none] [&::-webkit-details-marker]:hidden">
-                      <span>Q. {item.q}</span>
-                      <span className="ml-4 flex-shrink-0 text-[#EC99D0] transition-transform duration-200 group-open:rotate-180">
-                        ▾
-                      </span>
-                    </summary>
-                    <div className="px-6 pb-5 pt-3 text-base text-[#6b6b6b] leading-relaxed border-t border-[#f0d0e8]">
-                      {item.a}
+                      {/* サブテキスト */}
+                      <p className="text-sm text-[#6b6b6b] leading-relaxed">{step.sub}</p>
                     </div>
-                  </details>
-                </FadeIn>
+                  </FadeIn>
+
+                  {/* 矢印 */}
+                  {i < arr.length - 1 && (
+                    <div className="flex items-center justify-center md:w-8 py-2 md:py-0 flex-shrink-0">
+                      <div
+                        className="hidden md:block"
+                        style={{
+                          width: 0, height: 0,
+                          borderTop: "20px solid transparent",
+                          borderBottom: "20px solid transparent",
+                          borderLeft: `24px solid ${step.arrowColor}`,
+                        }}
+                      />
+                      <div
+                        className="md:hidden"
+                        style={{
+                          width: 0, height: 0,
+                          borderLeft: "20px solid transparent",
+                          borderRight: "20px solid transparent",
+                          borderTop: `24px solid ${step.arrowColor}`,
+                        }}
+                      />
+                    </div>
+                  )}
+                </Fragment>
               ))}
             </div>
 
-            <FadeIn delay={0.3}>
-              <div className="mt-8 text-center">
-                <Link
-                  href="/faq"
-                  className="inline-block text-sm font-bold text-[#EC99D0] hover:underline"
-                >
-                  すべてのご質問を見る →
-                </Link>
-              </div>
-            </FadeIn>
+            {/* ── ボタン ── */}
+            <div className="flex justify-center mt-12">
+              <Link
+                href="/flow"
+                className="relative flex items-center justify-center gap-3 px-16 py-6 rounded-full font-bold text-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg border-2 border-[#C9914A] overflow-hidden group"
+                style={{ boxShadow: "0 4px 20px rgba(201,145,74,0.35)" }}
+              >
+                {/* ゴールドグラデーション（ホバーで消える） */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#C9914A] to-[#e0ab6a] transition-opacity duration-300 group-hover:opacity-0" />
+                {/* 白背景（ホバーで現れる） */}
+                <div className="absolute inset-0 bg-white transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                <span className="relative z-10 text-white transition-colors duration-300 group-hover:text-[#C9914A]" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                  詳しいご利用の流れはこちら
+                </span>
+                <span className="relative z-10 text-lg text-white transition-colors duration-300 group-hover:text-[#C9914A]">›</span>
+              </Link>
+            </div>
+
           </div>
         </section>
 
 
-        {/* ── CONTACT CTA ── */}
-        <section
-          className="py-24 px-[5%] text-center relative overflow-hidden"
-          style={{ backgroundColor: "rgba(35,31,32,0.96)" }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse at 60% 50%, rgba(236,153,208,0.18), transparent 60%)",
-            }}
-          />
-          <FadeIn direction="up" className="relative z-10 max-w-xl mx-auto">
-            <p className="text-xs font-bold tracking-widest text-[#EC99D0] mb-4">CONTACT</p>
-            <h2 className="font-[var(--font-noto-serif-jp)] text-3xl font-light text-white mb-4">
-              まずはお気軽にご相談ください
-            </h2>
-            <p className="text-sm text-white/65 leading-loose mb-3">
-              「使えるかどうかわからない」という段階でも大丈夫です。
-              <br />
-              電話・LINEなど、ご都合の良い方法でご連絡ください。
-            </p>
-            <p className="text-sm text-white/40 mb-10">
-              電話：000-0000-0000（受付時間：平日 9:00〜17:00）
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-block px-8 py-4 rounded-full text-white font-bold text-sm transition-transform hover:-translate-y-0.5"
-                style={{
-                  background: "linear-gradient(120deg, #EC99D0, #B3AEDB)",
-                  boxShadow: "0 6px 24px rgba(236,153,208,0.4)",
-                }}
-              >
-                無料相談・お問い合わせ
-              </Link>
-              <Link
-                href="/recruit"
-                className="inline-block px-8 py-4 rounded-full text-white/80 font-bold text-sm border border-white/20 hover:border-white/50 transition-colors"
-              >
-                採用情報を見る
-              </Link>
-            </div>
-          </FadeIn>
-        </section>
 
       </div>{/* end space-y-3 wrapper */}
 
