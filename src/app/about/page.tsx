@@ -130,8 +130,7 @@ export default function AboutPage() {
           HERO — 背景なし・タイトルのみ
       ══════════════════════════════ */}
       <section
-        className="px-[5%]"
-        style={{ paddingTop: "240px", paddingBottom: "240px" }}
+        className="px-[5%] pt-20 pb-16 sm:pt-[240px] sm:pb-[240px]"
       >
         <div className="max-w-[900px] mx-auto w-full">
           <FadeIn direction="up" duration={1.6}>

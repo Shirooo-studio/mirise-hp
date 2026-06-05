@@ -24,12 +24,12 @@ export function VisionSectionItem({
   return (
     <div
       ref={ref}
-      className={`flex flex-col sm:flex-row gap-4 sm:gap-0 py-10 ${
+      className={`flex flex-col sm:flex-row gap-0 py-10 ${
         index > 0 ? "border-t border-black/5" : ""
       }`}
     >
-      {/* ── 左: ラベル + 飛び込みスクリプトテキスト（右詰） ── */}
-      <div className="flex-shrink-0 w-full sm:w-[32%] flex flex-row sm:flex-col items-baseline sm:items-end gap-3 sm:gap-0.5 overflow-hidden">
+      {/* ── ラベル + スクリプト（Mobile:左揃え縦積み / Desktop:右詰縦積み） ── */}
+      <div className="flex-shrink-0 w-full sm:w-[32%] flex flex-col items-start sm:items-end gap-0.5 overflow-hidden mb-5 sm:mb-0">
         {/* 小ラベル */}
         <motion.span
           className="text-xs font-bold tracking-widest sm:text-right"
@@ -84,9 +84,10 @@ export function VisionSectionItem({
         />
       </div>
 
-      {/* ── コンテンツ本文 ── */}
+      {/* ── コンテンツ本文（Mobile:左ボーダーあり / Desktop:なし） ── */}
       <motion.div
-        className="flex-1"
+        className="flex-1 border-l-[3px] sm:border-l-0 pl-5 sm:pl-0"
+        style={{ borderLeftColor: sec.borderColor }}
         initial={{ opacity: 0, y: 18 }}
         animate={
           isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }
