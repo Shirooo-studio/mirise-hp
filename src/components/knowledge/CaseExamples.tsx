@@ -168,9 +168,9 @@ export function CaseExamples() {
 
   return (
     <>
-      {/* ── カード（横スクロール：3枚見え、スクロールで4・5まで） ── */}
+      {/* ── カード（携帯：縦積み3枚 ／ PC：横スクロール5枚） ── */}
       <div
-        className="flex gap-5 sm:gap-6 overflow-x-auto pb-3 [&::-webkit-scrollbar]:hidden"
+        className="flex flex-col sm:flex-row gap-5 sm:gap-6 sm:overflow-x-auto pb-3 [&::-webkit-scrollbar]:hidden"
         style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none" }}
       >
         {cases.map((c, i) => (
@@ -178,8 +178,8 @@ export function CaseExamples() {
             key={c.no}
             type="button"
             onClick={() => setOpenIndex(i)}
-            style={{ width: "min(85vw, 420px)", scrollSnapAlign: "start" }}
-            className="group relative flex-none text-left rounded-[20px] bg-white shadow-[0_16px_44px_rgba(130,110,180,0.10)] overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+            style={{ scrollSnapAlign: "start" }}
+            className={`group relative flex-none w-full sm:w-[min(85vw,420px)] text-left rounded-[20px] bg-white shadow-[0_16px_44px_rgba(130,110,180,0.10)] overflow-hidden transition-transform duration-300 hover:-translate-y-1 ${i >= 3 ? "hidden sm:block" : ""}`}
           >
             {/* Case タグ（付箋風） */}
             <span
@@ -221,8 +221,8 @@ export function CaseExamples() {
         ))}
       </div>
 
-      {/* スワイプ／スクロールのヒント */}
-      <div className="flex justify-end items-center gap-3 mt-4">
+      {/* スワイプ／スクロールのヒント（PCのみ） */}
+      <div className="hidden sm:flex justify-end items-center gap-3 mt-4">
         <span className="text-sm tracking-[0.2em] text-[#bbb]">Scroll</span>
         <div className="h-px w-16 bg-[#bbb]" />
         <span className="text-lg text-[#bbb]">›</span>

@@ -54,18 +54,31 @@ const toc = [
   { label: "お問い合わせ", href: "#contact-cta" },
 ];
 
+/* ─── ご利用までの流れ 5ステップ ─── */
+const flowSteps = [
+  { label: "お問い合わせ", color: "#F58BC8" },
+  { label: "初回面談の調整", color: "#DB8FE0" },
+  { label: "ヒアリング・ご提案", color: "#B79BF0" },
+  { label: "関係機関との連携", color: "#8FB4FF" },
+  { label: "訪問看護の開始", color: "#62C5FF" },
+];
+
 /* ─── 募集職種タグ（やさしいパステルのピル）CSS：トップページと同じ ─── */
 const JOB_TAG_CSS = `
 .recruit-job-tag {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 160px;
   height: 56px;
   padding: 0 30px;
   border-radius: 9999px;
   background: linear-gradient(180deg, #F6F3FF 0%, #F1ECFD 100%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 4px 14px rgba(170,150,220,.12);
   overflow: hidden;
+  white-space: nowrap;
 }
 .recruit-job-tag::before {
   content: "";
@@ -88,6 +101,10 @@ const JOB_TAG_CSS = `
   background-clip: text;
   color: transparent;
 }
+@media (max-width: 639px) {
+  .recruit-job-tag { padding: 0 16px; min-width: 0; width: 100%; }
+  .recruit-job-tag > span { font-size: 16px; }
+}
 `;
 
 /* ─── 見出し横の××飾り罫（トップページと同じ） ─── */
@@ -109,12 +126,14 @@ function CrossBand({ color = "#B3AEDB" }: { color?: string }) {
 /* ─── 特徴1つ分（トップページと同じ） ─── */
 function FeatureCard({ f }: { f: { icon: string; title: string; desc: string } }) {
   return (
-    <div className="px-6 sm:px-8 py-8 flex flex-col items-center text-center gap-4 h-full">
-      <Image src={f.icon} alt="" width={56} height={56} className="w-20 h-20 object-contain" />
-      <p className="text-xl font-bold text-[#231F20] leading-snug whitespace-pre-line" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
-        {f.title}
-      </p>
-      <p className="text-xs sm:text-sm text-[#6b6b6b] leading-relaxed">{f.desc}</p>
+    <div className="px-6 sm:px-8 py-8 flex flex-row lg:flex-col items-start lg:items-center text-left lg:text-center gap-5 lg:gap-4 h-full">
+      <Image src={f.icon} alt="" width={56} height={56} className="w-16 h-16 lg:w-20 lg:h-20 object-contain shrink-0" />
+      <div className="flex flex-col gap-3 lg:gap-4 lg:items-center">
+        <p className="text-xl font-bold text-[#231F20] leading-snug whitespace-pre-line" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+          {f.title}
+        </p>
+        <p className="text-xs sm:text-sm text-[#6b6b6b] leading-relaxed">{f.desc}</p>
+      </div>
     </div>
   );
 }
@@ -132,7 +151,7 @@ function SectionHead({
       <p className="text-lg sm:text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
         {label}
       </p>
-      <h2 className="text-[1.9rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-8" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+      <h2 className="text-[1.7rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-8" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
         {title}
       </h2>
     </>
@@ -163,17 +182,13 @@ export default function KnowledgePage() {
             <p className="text-sm text-[#9a9a9a] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
               ホーム ー 訪問看護を知る
             </p>
-            {/* モバイル：rainbow-road をタイトルの上に配置 */}
-            <div aria-hidden className="lg:hidden mb-4">
-              <Image src="/rainbow-road.png" alt="" width={1994} height={1727} priority className="w-[88%] max-w-[420px] mx-auto h-auto" />
-            </div>
             <div className="max-w-[680px]">
               <FadeIn direction="up" duration={2.0}>
                 <p className="text-lg sm:text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
                   訪問看護を知る
                 </p>
                 <h1
-                  className="text-[2.1rem] sm:text-[3.6rem] font-bold text-[#231F20] leading-[1.4]"
+                  className="relative z-10 text-[1.7rem] sm:text-[3.6rem] font-bold text-[#231F20] leading-[1.4]"
                   style={{
                     fontFamily: "var(--font-zen-maru-gothic)",
                     textShadow: "0 0 6px rgba(255,255,255,0.95), 0 0 16px rgba(255,255,255,0.8)",
@@ -183,6 +198,12 @@ export default function KnowledgePage() {
                   <br />
                   途切れない訪問看護を。
                 </h1>
+                {/* 携帯：rainbow-road（右寄り・右ブリード・タイトルと少し重ねる／トップABOUTと同じ） */}
+                <div aria-hidden className="lg:hidden relative z-0 -mr-[22%] -mt-16 mb-8 pointer-events-none">
+                  <FadeIn direction="left" duration={2.0}>
+                    <Image src="/rainbow-road.png" alt="" width={1694} height={1527} priority className="w-[75%] h-auto ml-auto" />
+                  </FadeIn>
+                </div>
                 <p
                   className="mt-6 text-xl sm:text-2xl font-bold text-[#8a7fb5]"
                   style={{
@@ -249,10 +270,10 @@ export default function KnowledgePage() {
         <section id="about-nursing" className="relative z-10 overflow-hidden px-[5%] lg:pr-[17%] py-12 sm:py-20 scroll-mt-[110px]">
           <div className="max-w-[1000px] mx-auto">
             <FadeIn direction="up" duration={2.0}>
-              <SectionHead label="訪問看護って？" title={<>ご本人だけでなく、ご家族ごと。<br className="hidden sm:block" />医療とメンタルの両面から支えます。</>} />
+              <SectionHead label="訪問看護って？" title={<>ご本人だけでなく、<br className="sm:hidden" />ご家族ごと。<br />医療とメンタルの両面から支えます。</>} />
             </FadeIn>
             <FadeIn direction="up" delay={0.15} duration={2.0}>
-              <div className="space-y-5 text-xs sm:text-base text-[#4a4a4a] leading-loose max-w-[760px]">
+              <div className="space-y-5 text-xs sm:text-base text-[#4a4a4a] leading-loose max-w-[760px] pr-[7%] lg:pr-0">
                 <p>
                   発達や知的の特性、不登校・ひきこもり、気分の落ち込みや不眠など、乳幼児から成人まで、ご本人やご家族が抱える生きづらさに寄り添います。精神・知的の分野に特化した看護師やリハビリ職（作業療法士・理学療法士・言語聴覚士）がご自宅を訪問し、主治医の指示のもと、健康や生活の両面からサポートします。
                 </p>
@@ -282,7 +303,7 @@ export default function KnowledgePage() {
                     color: "transparent",
                   }}
                 >
-                  ミライズの訪問看護 5つの特長
+                  ミライズの訪問看護 <br className="sm:hidden" />5つの特長
                 </h2>
                 <CrossBand />
               </div>
@@ -295,7 +316,7 @@ export default function KnowledgePage() {
             {/* 上段3つ */}
             <div className="grid grid-cols-1 sm:grid-cols-3">
               {features.slice(0, 3).map((f, i) => (
-                <FadeIn key={f.title} direction="up" delay={i * 0.25} duration={1.8} className={i < 2 ? "sm:border-r sm:border-dotted sm:border-[#ada2cc]" : ""}>
+                <FadeIn key={f.title} direction="up" delay={i * 0.25} duration={1.8} className={`border-b border-dotted border-[#ada2cc] sm:border-b-0 ${i < 2 ? "sm:border-r sm:border-dotted sm:border-[#ada2cc]" : ""}`}>
                   <FeatureCard f={f} />
                 </FadeIn>
               ))}
@@ -304,7 +325,7 @@ export default function KnowledgePage() {
             {/* 下段2つ */}
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:max-w-[640px] mx-auto">
               {features.slice(3, 5).map((f, i) => (
-                <FadeIn key={f.title} direction="up" delay={i * 0.25} duration={1.8} className={i < 1 ? "sm:border-r sm:border-dotted sm:border-[#ada2cc]" : ""}>
+                <FadeIn key={f.title} direction="up" delay={i * 0.25} duration={1.8} className={i < 1 ? "border-b border-dotted border-[#ada2cc] sm:border-b-0 sm:border-r sm:border-dotted sm:border-[#ada2cc]" : ""}>
                   <FeatureCard f={f} />
                 </FadeIn>
               ))}
@@ -415,7 +436,7 @@ export default function KnowledgePage() {
             {/* 見出し（虹グラデーション文字・中央） */}
             <FadeIn direction="up" duration={2.0}>
               <h2
-                className="text-center text-[2rem] sm:text-5xl font-bold leading-tight mb-5 tracking-[0.04em]"
+                className="text-center text-[1.7rem] sm:text-5xl font-bold leading-tight mb-5 tracking-[0.04em]"
                 style={{
                   fontFamily: "var(--font-zen-maru-gothic)",
                   backgroundImage: "var(--brand-gradient)",
@@ -435,38 +456,63 @@ export default function KnowledgePage() {
               </p>
             </FadeIn>
 
-            {/* 5ステップ（アウトライン円＋虹の大きな波線・左から順に出現） */}
+            {/* 5ステップ */}
             <div className="relative">
-              {/* 円をつなぐ虹グラデーションの線（PCのみ・左→右に伸びる） */}
-              <GradientLine
-                className="hidden md:block absolute left-[8%] right-[8%] top-[calc(50%-1px)] h-[2px] rounded-full"
-                style={{ backgroundImage: "var(--brand-gradient)", opacity: 0.75 }}
-                duration={1.6}
-                delay={0.1}
-              />
-              <div className="relative flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-2">
-                {[
-                  { label: "お問い合わせ", color: "#F58BC8" },
-                  { label: "初回面談の調整", color: "#DB8FE0" },
-                  { label: "ヒアリング・ご提案", color: "#B79BF0" },
-                  { label: "関係機関との連携", color: "#8FB4FF" },
-                  { label: "訪問看護の開始", color: "#62C5FF" },
-                ].map((step, i) => (
-                  <FadeIn key={i} direction="up" delay={i * 0.2} duration={1.4}>
-                    <div
-                      className="rounded-full bg-[#FCFAFF] flex flex-col items-center justify-center text-center w-[144px] h-[144px] md:w-[134px] md:h-[134px] lg:w-[176px] lg:h-[176px] shadow-[0_10px_26px_rgba(150,130,210,0.16)]"
-                      style={{ border: `2px solid ${step.color}` }}
-                    >
-                      <span className="text-3xl sm:text-4xl font-bold leading-none" style={{ fontFamily: "var(--font-lora)", color: step.color }}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span aria-hidden className="block w-8 border-t border-dotted my-2.5 opacity-70" style={{ borderColor: step.color }} />
-                      <span className="text-sm font-bold text-[#5a5a5a] px-2 leading-tight whitespace-nowrap" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
-                        {step.label}
-                      </span>
-                    </div>
-                  </FadeIn>
-                ))}
+              {/* ── 携帯：縦並び（番号は丸の中・内容は右・丸を縦線でつなぐ） ── */}
+              <div className="md:hidden relative max-w-[440px] mx-auto">
+                {/* 円をつなぐ縦の虹グラデーション線 */}
+                <span
+                  aria-hidden
+                  className="absolute left-[35px] top-[36px] bottom-[36px] w-[2px] rounded-full"
+                  style={{ backgroundImage: "var(--brand-gradient)", opacity: 0.6 }}
+                />
+                <div className="relative flex flex-col gap-6">
+                  {flowSteps.map((step, i) => (
+                    <FadeIn key={i} direction="up" delay={i * 0.12} duration={1.2}>
+                      <div className="flex items-center gap-5">
+                        <div
+                          className="relative z-10 shrink-0 rounded-full bg-[#FCFAFF] flex items-center justify-center w-[72px] h-[72px] shadow-[0_10px_26px_rgba(150,130,210,0.16)]"
+                          style={{ border: `2px solid ${step.color}` }}
+                        >
+                          <span className="text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-lora)", color: step.color }}>
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                        </div>
+                        <span className="text-base font-bold text-[#5a5a5a] leading-snug" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                          {step.label}
+                        </span>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── PC：横並び（丸の中に番号＋内容・横線でつなぐ） ── */}
+              <div className="hidden md:block relative">
+                <GradientLine
+                  className="absolute left-[8%] right-[8%] top-[calc(50%-1px)] h-[2px] rounded-full"
+                  style={{ backgroundImage: "var(--brand-gradient)", opacity: 0.75 }}
+                  duration={1.6}
+                  delay={0.1}
+                />
+                <div className="relative flex flex-row items-center justify-between gap-2">
+                  {flowSteps.map((step, i) => (
+                    <FadeIn key={i} direction="up" delay={i * 0.2} duration={1.4}>
+                      <div
+                        className="rounded-full bg-[#FCFAFF] flex flex-col items-center justify-center text-center w-[134px] h-[134px] lg:w-[176px] lg:h-[176px] shadow-[0_10px_26px_rgba(150,130,210,0.16)]"
+                        style={{ border: `2px solid ${step.color}` }}
+                      >
+                        <span className="text-4xl font-bold leading-none" style={{ fontFamily: "var(--font-lora)", color: step.color }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span aria-hidden className="block w-8 border-t border-dotted my-2.5 opacity-70" style={{ borderColor: step.color }} />
+                        <span className="text-sm font-bold text-[#5a5a5a] px-2 leading-tight whitespace-nowrap" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                          {step.label}
+                        </span>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -495,7 +541,7 @@ export default function KnowledgePage() {
                 <p className="text-lg sm:text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-zen-maru-gothic)", color: "#E576B8" }}>
                   お問い合わせ
                 </p>
-                <h2 className="text-[1.9rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-7" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                <h2 className="text-[1.7rem] sm:text-[3rem] font-bold text-[#231F20] leading-[1.45] mb-7" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                   利用に関する
                   <br />
                   ご相談・お問い合わせ
@@ -603,14 +649,14 @@ export default function KnowledgePage() {
                   <p className="text-sm sm:text-base font-bold text-[#9a9a9a]" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>採用情報</p>
                 </div>
 
-                <h2 className="text-[1.7rem] sm:text-[2.7rem] font-bold text-[#231F20] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                <h2 className="text-[1.3rem] sm:text-[2.7rem] font-bold text-[#231F20] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                   あなたの経験で、
                   <br />
                   ともに未来を描きませんか？
                 </h2>
 
-                <p className="text-xs sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
-                  「看護師である前に、一人の人間として」を大切に、あなたらしい柔軟な働き方を応援します。
+                <p className="text-[10px] sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
+                  「看護師である前に、一人の人間として」を大切に、<br className="sm:hidden" />あなたらしい柔軟な働き方を応援します。
                   <br />
                   副業・ダブルワークや、未経験・ブランクの方も歓迎です。
                 </p>

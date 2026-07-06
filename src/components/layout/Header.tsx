@@ -16,20 +16,31 @@ import { LINE_URL } from "@/lib/site";
 /* ── 公式Instagram（未開設の間は "#"。URLが決まったら差し替え） ── */
 const INSTAGRAM_URL = "#";
 
-/* メニュー：左列（サービス系）／右列（会社・その他）。すべて実在ページへのリンク */
-const menuLeft = [
-  { label: "訪問看護について", href: "/#strength" },
-  { label: "ご利用の流れ", href: "/flow" },
-  { label: "ご利用料金", href: "/price" },
-  { label: "よくあるご質問", href: "/faq" },
-];
-
-const menuRight = [
-  { label: "ミライズについて", href: "/about" },
-  { label: "代表からのご挨拶", href: "/about#message" },
-  { label: "会社概要", href: "/about#company" },
-  { label: "お問い合わせ", href: "/contact" },
-  { label: "採用情報", href: "/recruit" },
+/* メニュー：3セクション（Services / About / Info）。すべて実在ページへのリンク */
+const menuSections = [
+  {
+    title: "Services",
+    links: [
+      { label: "ご利用の流れ", href: "/flow" },
+      { label: "ご利用料金", href: "/price" },
+      { label: "よくあるご質問", href: "/faq" },
+    ],
+  },
+  {
+    title: "About",
+    links: [
+      { label: "ミライズについて", href: "/about" },
+      { label: "代表からのご挨拶", href: "/about#message" },
+      { label: "会社概要", href: "/about#company" },
+    ],
+  },
+  {
+    title: "Info",
+    links: [
+      { label: "お問い合わせ", href: "/contact" },
+      { label: "採用情報", href: "/recruit" },
+    ],
+  },
 ];
 
 export function Header() {
@@ -172,67 +183,98 @@ export function Header() {
               </SheetTitle>
             </SheetHeader>
 
-            {/* ── メニュー本体（2列＋区切り線） ── */}
+            {/* ── メニュー本体（上：主要ナビ／下：3セクション） ── */}
             <nav
-              className="mx-auto max-w-[860px] px-8 sm:px-12 pb-16"
+              className="mx-auto max-w-[900px] px-8 sm:px-12 pb-16"
               style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-14">
-                {/* 左列 */}
-                <div>
-                  {menuLeft.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block text-lg text-[#3a3a3a] hover:text-[#EC99D0] py-5 border-b border-[#dcdcdc] transition-colors leading-snug"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-                {/* 右列 */}
-                <div>
-                  {menuRight.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block text-lg text-[#3a3a3a] hover:text-[#EC99D0] py-5 border-b border-[#dcdcdc] transition-colors leading-snug"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+              {/* ── 主要ナビ（上部・目立たせる） ── */}
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3 sm:gap-4 mb-12 pb-10 border-b border-[#e3d7ef]">
+                <Link
+                  href="/"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-lg font-bold text-[#3a3a3a] bg-white border border-[#e6ddf2] shadow-sm hover:text-[#8263C3] transition-colors"
+                >
+                  TOP
+                </Link>
+                <Link
+                  href="/knowledge"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-lg font-bold text-[#3a3a3a] bg-white border border-[#e6ddf2] shadow-sm hover:text-[#8263C3] transition-colors"
+                >
+                  訪問看護を知る
+                </Link>
+                <Link
+                  href="/recruit"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-white font-bold text-lg shadow-[0_10px_26px_rgba(201,145,74,0.30)] transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ background: "linear-gradient(135deg, #E0A85E, #C9914A)" }}
+                >
+                  働きたい方へ
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-white font-bold text-lg shadow-[0_10px_26px_rgba(150,130,210,0.30)] transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ backgroundImage: "var(--brand-gradient)" }}
+                >
+                  お問い合わせ
+                </Link>
+              </div>
 
-                  {/* SNS */}
-                  <div className="flex items-center gap-4 pt-8">
-                    <a
-                      href={LINE_URL}
-                      target={LINE_URL === "#" ? undefined : "_blank"}
-                      rel="noopener noreferrer"
-                      aria-label="公式LINE"
-                      className="w-12 h-12 rounded-2xl bg-[#06C755] flex items-center justify-center text-white transition-transform duration-300 hover:-translate-y-0.5"
+              {/* ── 3セクション（Services / About / Info） ── */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-8">
+                {menuSections.map((section) => (
+                  <div key={section.title}>
+                    <p
+                      className="text-sm font-bold tracking-[0.18em] mb-2 pb-2 border-b-2 border-[#f0d9ea]"
+                      style={{ color: "#E576B8", fontFamily: "var(--font-lora)" }}
                     >
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.7 6.2-.2.6-.6 2.1-.8 2.6-.1.3.1.4.3.3.3-.1 2.6-1.7 3.6-2.4.9.2 1.9.3 3.2.3 5.5 0 10-3.6 10-8s-4.5-8-10-8Z" />
-                      </svg>
-                    </a>
-                    <a
-                      href={INSTAGRAM_URL}
-                      target={INSTAGRAM_URL === "#" ? undefined : "_blank"}
-                      rel="noopener noreferrer"
-                      aria-label="公式Instagram"
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center text-white transition-transform duration-300 hover:-translate-y-0.5"
-                      style={{ background: "linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5)" }}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="3" width="18" height="18" rx="5" />
-                        <circle cx="12" cy="12" r="4.2" />
-                        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
-                      </svg>
-                    </a>
+                      {section.title}
+                    </p>
+                    <div>
+                      {section.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className="block text-lg text-[#3a3a3a] hover:text-[#EC99D0] py-4 border-b border-[#e9e3f1] transition-colors leading-snug"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                ))}
+              </div>
+
+              {/* ── SNS ── */}
+              <div className="flex items-center gap-4 pt-10">
+                <a
+                  href={LINE_URL}
+                  target={LINE_URL === "#" ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label="公式LINE"
+                  className="w-12 h-12 rounded-2xl bg-[#06C755] flex items-center justify-center text-white transition-transform duration-300 hover:-translate-y-0.5"
+                >
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.7 6.2-.2.6-.6 2.1-.8 2.6-.1.3.1.4.3.3.3-.1 2.6-1.7 3.6-2.4.9.2 1.9.3 3.2.3 5.5 0 10-3.6 10-8s-4.5-8-10-8Z" />
+                  </svg>
+                </a>
+                <a
+                  href={INSTAGRAM_URL}
+                  target={INSTAGRAM_URL === "#" ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label="公式Instagram"
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-white transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ background: "linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5)" }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4.2" />
+                    <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
               </div>
             </nav>
           </SheetContent>

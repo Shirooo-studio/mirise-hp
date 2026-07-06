@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const serviceLinks = [
-  { label: "訪問看護について", href: "/#strength" },
+  { label: "訪問看護を知る", href: "/knowledge" },
   { label: "ご利用の流れ", href: "/flow" },
   { label: "ご利用料金", href: "/price" },
   { label: "よくあるご質問", href: "/faq" },

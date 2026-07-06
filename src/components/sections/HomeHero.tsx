@@ -30,7 +30,7 @@ const badges = [
 
 export function HomeHero() {
   return (
-    <section className="relative min-h-[calc(100vh-100px)] lg:min-h-[820px] flex items-start overflow-hidden px-[5%] py-12 sm:pt-16 lg:pt-20 pb-16 lg:pb-0 mb-24">
+    <section className="relative min-h-[calc(100vh-100px)] lg:min-h-[820px] flex items-start overflow-hidden px-[5%] py-12 sm:pt-16 lg:pt-20 pb-16 lg:pb-0 mb-8 lg:mb-24">
 
       {/* ══════ 背景装飾：虹のかけら・光の粒・星・グラデの丸 ══════ */}
       <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -129,7 +129,7 @@ export function HomeHero() {
 
           {/* モバイル：ヒーローのシーン（hero-visual＋mountain-cloud＋cloud-decor を同じ位置関係で配置） */}
           <motion.div
-            className="lg:hidden relative mx-auto mt-10 w-full max-w-[480px] aspect-[1/1]"
+            className="lg:hidden relative mx-auto -mt-6 w-full max-w-[480px] aspect-[7/6]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 3.4, ease: EASE }}
@@ -137,9 +137,9 @@ export function HomeHero() {
             {/* 雲＋ラベンダー（左下・背面） */}
             <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="absolute z-0 bottom-[4%] -left-[7%] w-[66%] h-auto" />
             {/* 山と雲（右下・背面） */}
-            <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="absolute z-[1] bottom-0 -right-[13%] w-[84%] h-auto" />
+            <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="absolute z-20 bottom-0 -right-[20%] w-[84%] h-auto" />
             {/* 看護師とお子さま（前面・右上） */}
-            <Image src="/hero-visual.png" alt="看護師とお子さま" width={1024} height={1024} className="absolute z-10 -top-[6%] right-[1%] w-[98%] h-auto" />
+            <Image src="/hero-visual.png" alt="看護師とお子さま" width={1024} height={1024} className="absolute -z-10 -top-[6%] -right-[10%] w-[98%] h-auto" />
           </motion.div>
 
           {/* 3つの円バッジ（一時的に非表示：false && で無効化。戻すときは false を true に、または {false && ( )} の囲みを外す） */}

@@ -140,12 +140,16 @@ const JOB_TAG_CSS = `
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 160px;
   height: 56px;
   padding: 0 30px;
   border-radius: 9999px;
   background: linear-gradient(180deg, #F6F3FF 0%, #F1ECFD 100%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 4px 14px rgba(170,150,220,.12);
   overflow: hidden;
+  white-space: nowrap;
 }
 .recruit-job-tag::before {
   content: "";
@@ -167,6 +171,10 @@ const JOB_TAG_CSS = `
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+@media (max-width: 639px) {
+  .recruit-job-tag { padding: 0 16px; min-width: 0; width: 100%; }
+  .recruit-job-tag > span { font-size: 16px; }
 }
 `;
 
@@ -330,18 +338,22 @@ export default function HomePage() {
         {/* ════════ ABOUT＋5つの特徴：通しグラデの上に白パネル ════════ */}
         <div className="relative">
           {/* 共有の白パネル：左フルブリード／右が少し切れる（角丸） */}
-          <div aria-hidden className="absolute inset-y-0 left-0 right-[9%] sm:right-[7%] bg-white rounded-r-[44px]" />
+          <div aria-hidden className="absolute top-[170px] bottom-0 sm:top-0 left-0 right-[9%] sm:right-[7%] bg-white rounded-r-[44px]" />
 
           {/* ── ABOUT ── */}
           <section id="about" className="relative overflow-hidden px-[5%] py-10 sm:py-24">
             {/* 虹の道＋家族（PC：背面・右・縦中央。文章は前面） */}
             <div aria-hidden className="hidden lg:block absolute z-0 right-[-5%] top-[55%] -translate-y-1/2 w-[min(60vw,800px)] pointer-events-none">
-              <Image src="/rainbow-road.png" alt="" width={1036} height={1024} className="w-full h-auto" />
+              <FadeIn direction="left" duration={2.0}>
+                <Image src="/rainbow-road.png" alt="" width={1036} height={1024} className="w-full h-auto" />
+              </FadeIn>
             </div>
             <div className="relative z-10 max-w-[1100px] mx-auto">
-              {/* 携帯：虹の道（ABOUTの上・右いっぱいにブリード） */}
-              <div aria-hidden className="lg:hidden relative -mr-[9%] mb-6 pointer-events-none">
-                <Image src="/rainbow-road.png" alt="" width={1036} height={1024} className="w-full h-auto" />
+              {/* 携帯：虹の道（ABOUTの上・白パネルとまたがる） */}
+              <div aria-hidden className="lg:hidden relative -mr-[22%] mb-6 pointer-events-none">
+                <FadeIn direction="left" duration={2.0}>
+                  <Image src="/rainbow-road.png" alt="" width={1036} height={1024} className="w-[80%] h-auto ml-auto" />
+                </FadeIn>
               </div>
               <div className="max-w-[640px] pr-[10%] lg:pr-0">
                 <div className="flex flex-col lg:flex-row lg:flex-wrap items-start lg:items-end gap-x-5 gap-y-1 lg:gap-y-3 mb-3">
@@ -636,15 +648,24 @@ export default function HomePage() {
 
         {/* ════════ VISION（ミライズの想い／左：文章・右：イラスト） ════════ */}
         <section id="vision" className="relative overflow-hidden py-20 sm:pt-32 sm:pb-80 px-[5%]">
-          {/* 背景画像：全面（PC・携帯共通・MIRISEの背景） */}
+          {/* 背景画像：携帯＝縦長 / PC＝横長 で切り替え */}
           <div aria-hidden className="absolute inset-0 pointer-events-none">
+            {/* 携帯：縦長画像 */}
+            <Image
+              src="/mirise-bg-sp.png"
+              alt=""
+              fill
+              sizes="100vw"
+              className="lg:hidden object-cover object-[60%_center] opacity-90"
+            />
+            {/* PC：横長画像 */}
             <Image
               src="/mirise-bg.png"
               alt=""
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center opacity-90"
+              className="hidden lg:block object-cover object-center opacity-90"
             />
           </div>
           {/* 背景は親の「未来へ向かう空」レイヤーを共有（このセクション固有の装飾は無し） */}
@@ -673,13 +694,14 @@ export default function HomePage() {
                 className="text-[1.7rem] sm:text-[3.25rem] font-bold text-[#231F20] leading-[1.3] tracking-[0.02em] mb-12"
                 style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
               >
-                「こんなに頼ってよかった」
+                <span className="sm:hidden">｢こんなに頼ってよかった｣</span>
+                <span className="hidden sm:inline">「こんなに頼ってよかった」</span>
                 <br />
                 を知ってほしい。
               </h2>
 
               {/* 導入文 */}
-              <div className="max-w-[720px] text-xs sm:text-base text-[#5a5a5a] leading-[1.9] mb-6">
+              <div className="max-w-[220px] lg:max-w-[720px] text-xs sm:text-base text-[#5a5a5a] leading-[1.9] mb-6">
                 <p>
                   訪問看護は、看護を受けるだけのサービスではありません。
                   <br />
@@ -692,8 +714,9 @@ export default function HomePage() {
               {/* メッセージ①②③：それぞれ「ふわっと」出現。見出しと本文の余白を揃えて中央に見えるように */}
               <div className="space-y-6 max-w-[720px]">
                 <FadeIn direction="up" duration={1.4}>
-                  <p className="text-[0.9rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#B99AE8] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
-                    「こんなこと聞いていいのかな」も大丈夫です
+                  <p className="text-[1.1rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#B99AE8] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
+                    <span className="sm:hidden">｢こんなこと聞いていいのかな｣も大丈夫</span>
+                    <span className="hidden sm:inline">「こんなこと聞いていいのかな」も大丈夫です</span>
                   </p>
                   <p className="text-xs sm:text-base text-[#5a5a5a] leading-[1.9]">
                     生活のこと、学校のこと、人間関係のこと。
@@ -702,8 +725,8 @@ export default function HomePage() {
                   </p>
                 </FadeIn>
                 <FadeIn direction="up" duration={1.4} delay={0.3}>
-                  <p className="text-[0.9rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#F3A7C8] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
-                    ご家族のお悩みも、聞かせてください
+                  <p className="text-[1.1rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#F3A7C8] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
+                    ご家族のお悩みも聞かせてください
                   </p>
                   <p className="text-xs sm:text-base text-[#5a5a5a] leading-[1.9]">
                     ご家族自身の不安や負担にも、
@@ -712,13 +735,13 @@ export default function HomePage() {
                   </p>
                 </FadeIn>
                 <FadeIn direction="up" duration={1.4} delay={0.6}>
-                  <p className="text-[0.9rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#9FD8C4] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
+                  <p className="text-[1.1rem] sm:text-[1.9rem] whitespace-nowrap font-bold text-[#9FD8C4] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)", textShadow: "0 0 3px rgba(255,255,255,1), 0 0 7px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,0.95), 0 2px 20px rgba(255,255,255,0.9)" }}>
                     地域の支援につながる入口になります
                   </p>
                   <p className="text-xs sm:text-base text-[#5a5a5a] leading-[1.9]">
                     医療や福祉、学校や相談支援など、
                     <br />
-                    必要な支援とつながり、安心して暮らせる環境を整えます。
+                    必要な支援とつながり、<br className="sm:hidden" />安心して暮らせる環境を整えます。
                   </p>
                 </FadeIn>
               </div>
@@ -926,14 +949,14 @@ export default function HomePage() {
                   <p className="text-sm sm:text-base font-bold text-[#9a9a9a]" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>採用情報</p>
                 </div>
 
-                <h2 className="text-[1.7rem] sm:text-[2.7rem] font-bold text-[#231F20] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
+                <h2 className="text-[1.3rem] sm:text-[2.7rem] font-bold text-[#231F20] leading-[1.5] mb-6" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>
                   あなたの経験で、
                   <br />
                   ともに未来を描きませんか？
                 </h2>
 
-                <p className="text-xs sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
-                  「看護師である前に、一人の人間として」を大切に、あなたらしい柔軟な働き方を応援します。
+                <p className="text-[10px] sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
+                  「看護師である前に、一人の人間として」を大切に、<br className="sm:hidden" />あなたらしい柔軟な働き方を応援します。
                   <br />
                   副業・ダブルワークや、未経験・ブランクの方も歓迎です。
                 </p>
