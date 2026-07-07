@@ -1,0 +1,13 @@
+{
+  // 静的エクスポート（next.config.ts の output: "export"）の出力 out/ を
+  // Cloudflare Workers の「静的アセット」としてそのまま配信するための設定。
+  // このファイルがあることで、デプロイ時に OpenNext（サーバー型アダプター）へ
+  // 自動移行されるのを防ぎます。
+  "name": "mirise-hp",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./out",
+    // 未知パスは Next が書き出す 404.html を返す
+    "not_found_handling": "404-page"
+  }
+}
