@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { PriceTabs } from "@/components/price/PriceTabs";
 
@@ -15,10 +16,10 @@ const HEAD_BG = "#6cb6dd";
 const CELL_BG = "#eef5fa";
 
 const tableHeaders = ["利用方法", "負担割合", "1回あたりの自己負担額", "特徴"];
-const tableRows: string[][] = [
+const tableRows: ReactNode[][] = [
   ["医療保険", "1〜3割", "約800円〜2,400円", "小児・難病・障がい者など"],
   ["子ども医療費助成", "なし", "0円", "18歳以下対象、富山県内"],
-  ["自立支援医療", "1割", "0円〜上限あり", "精神疾患・発達障がい・知的障がい対象"],
+  ["自立支援医療", "1割", "0円〜上限あり", <>精神疾患・発達障がい<br className="hidden lg:block" />・知的障がい対象</>],
   ["介護保険", "1〜3割", "約300円〜3,000円", "65歳以上・要介護認定が必要"],
   ["自費", "全額負担", "1回8,000円〜", "保険適用外、オーダーメイド対応"],
 ];
@@ -85,9 +86,9 @@ export default function PricePage() {
                   ))}
                 </div>
                 {/* データ行 */}
-                {tableRows.map((row) => (
+                {tableRows.map((row, ri) => (
                   <div
-                    key={row[0]}
+                    key={ri}
                     className="grid gap-1.5 sm:gap-2 mb-1.5 sm:mb-2"
                     style={{ gridTemplateColumns: COLS }}
                   >

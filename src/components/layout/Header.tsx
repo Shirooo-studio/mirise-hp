@@ -14,7 +14,7 @@ import {
 import { LINE_URL } from "@/lib/site";
 
 /* ── 公式Instagram（未開設の間は "#"。URLが決まったら差し替え） ── */
-const INSTAGRAM_URL = "https://www.instagram.com/hokan_mirise";
+const INSTAGRAM_URL: string = "https://www.instagram.com/hokan_mirise";
 
 /* メニュー：3セクション（Services / About / Info）。すべて実在ページへのリンク */
 const menuSections = [
