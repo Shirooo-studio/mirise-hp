@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 /* ─── 利用例データ（内容は仮。あとで差し替え） ─── */
 type CaseItem = {
@@ -8,6 +9,8 @@ type CaseItem = {
   title: string;
   color: string;
   subject: string[];
+  /** カード写真（public/ 配下） */
+  image: string;
   /** 詳細（見出し＋箇条書き）※仮テキスト */
   detail: { heading: string; items: string[] }[];
 };
@@ -18,6 +21,7 @@ const cases: CaseItem[] = [
     title: "退院後の生活を安定させたい",
     color: "#EC99D0",
     subject: ["難病・一般看護"],
+    image: "/case-1.png",
     detail: [
       {
         heading: "こんなお悩み",
@@ -44,6 +48,7 @@ const cases: CaseItem[] = [
     title: "就労やデイの送り出しを支えてほしい",
     color: "#B3AEDB",
     subject: ["精神・就労支援"],
+    image: "/case-2.png",
     detail: [
       {
         heading: "こんなお悩み",
@@ -70,6 +75,7 @@ const cases: CaseItem[] = [
     title: "お子様の成長を支えてほしい",
     color: "#84D3F4",
     subject: ["小児・放デイ連携"],
+    image: "/case-3.png",
     detail: [
       {
         heading: "こんなお悩み",
@@ -98,6 +104,7 @@ const cases: CaseItem[] = [
     title: "自分らしい生活リズムを取り戻したい",
     color: "#9EDED0",
     subject: ["精神・社会参加"],
+    image: "/case-4.png",
     detail: [
       {
         heading: "こんなお悩み",
@@ -124,6 +131,7 @@ const cases: CaseItem[] = [
     title: "家族だけでの対応に限界を感じている",
     color: "#C9914A",
     subject: ["ご家族・レスパイト"],
+    image: "/case-5.png",
     detail: [
       {
         heading: "こんなお悩み",
@@ -202,14 +210,17 @@ export function CaseExamples() {
               </div>
             </div>
 
-            {/* 画像部（写真は後で差し替え）＋ホバーで「詳細を見る」 */}
+            {/* 画像部＋ホバーで「詳細を見る」 */}
             <div className="relative aspect-[3/2] overflow-hidden">
-              <div
-                className="absolute inset-0 flex items-center justify-center"
-                style={{ background: `linear-gradient(160deg, ${c.color}22, ${c.color}11)` }}
-              >
-                <span className="text-sm text-[#9a9a9a]">写真</span>
-              </div>
+              <Image
+                src={c.image}
+                alt={c.title}
+                width={420}
+                height={280}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* 白の半透明オーバーレイ（少しだけ淡く） */}
+              <div className="absolute inset-0 bg-white/25" />
               {/* ホバーオーバーレイ */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <span className="text-white text-lg font-bold tracking-wide" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>

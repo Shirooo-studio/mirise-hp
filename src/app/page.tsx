@@ -117,14 +117,13 @@ const cases = [
 ];
 
 /* ─── 写真スライド（MIRISE→お問い合わせの間で自動で流れる帯）の画像 ───
-   public/ に以下の名前で保存してください（推奨6枚）。横長写真（3:2）が◎ */
+   public/ に以下の名前で保存してください（5枚）。横長写真（3:2）が◎ */
 const slidePhotos = [
-  "/slide-1.jpg",
-  "/slide-2.jpg",
-  "/slide-3.jpg",
-  "/slide-4.jpg",
-  "/slide-5.jpg",
-  "/slide-6.jpg",
+  "/slide-1.png",
+  "/slide-2.png",
+  "/slide-3.png",
+  "/slide-4.png",
+  "/slide-5.png",
 ];
 
 /* 写真スライド用CSS（globals.css ではなくページ内インラインで確実に適用） */
@@ -269,7 +268,7 @@ export default function HomePage() {
 
                 {/* PC：他のケースを見る（右上） */}
                 <Link
-                  href="/contact"
+                  href="/knowledge#cases"
                   className="group hidden lg:inline-flex items-center gap-2.5 text-[#5a5a5a] hover:text-[#EC99D0] transition-colors mb-1 sm:mb-2 shrink-0"
                 >
                   <span className="text-sm sm:text-base font-bold" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>他のケースを見る</span>
@@ -325,7 +324,7 @@ export default function HomePage() {
             {/* 携帯：他のケースを見る（下・右端） */}
             <div className="flex lg:hidden justify-end mt-8 sm:mt-10">
               <Link
-                href="/contact"
+                href="/knowledge#cases"
                 className="group inline-flex items-center gap-2.5 text-[#5a5a5a] hover:text-[#EC99D0] transition-colors"
               >
                 <span className="text-sm sm:text-base font-bold" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>他のケースを見る</span>
