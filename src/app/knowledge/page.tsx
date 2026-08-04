@@ -657,9 +657,11 @@ export default function KnowledgePage() {
                 </h2>
 
                 <p className="text-[10px] sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
-                  「看護師である前に、一人の人間として」を大切に、<br className="sm:hidden" />あなたらしい柔軟な働き方を応援します。
+                  精神科での経験は、在宅の現場でこそ活きます。
                   <br />
-                  副業・ダブルワークや、未経験・ブランクの方も歓迎です。
+                  退院後の暮らしを環境ごと見直し、安心して過ごせる毎日を、少しずつ整えていく。
+                  <br />
+                  病棟ではできない支援を、一緒に作っていきましょう。
                 </p>
 
                 {/* 募集職種（左にラベル＋右にピルタグ） */}

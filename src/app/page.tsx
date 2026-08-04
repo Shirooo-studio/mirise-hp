@@ -73,7 +73,7 @@ const features = [
   { icon: "/icon-stethoscope.png", title: "精神科で培った\n専門性", desc: "観察力・コミュニケーション力・多職種連携を活かし、小児から高齢者まで幅広く対応します。" },
   { icon: "/icon-sparkle.png", title: "「したい」を\n叶えるケア", desc: "外出・外食など“したい”を目標に、生活に合わせた最適なプログラムを専門職が提案します。" },
   { icon: "/icon-hands-heart.png", title: "ご家族の休息も\n大切に", desc: "介護を担うご家族をケアのパートナーと考え、休息と笑顔も一緒に守ります。" },
-  { icon: "/icon-location.png", title: "地域密着の\n連携力", desc: "富山市上袋を拠点に、主治医やケアマネジャー・相談員と密に連携します。" },
+  { icon: "/icon-location.png", title: "地域密着の\n連携力", desc: "主治医、相談員、ケアマネジャー、就労支援事業所、放課後等デイサービス、ショートステイ、生活介護などの地域連携を大事にしています。" },
 ];
 
 /* ─── データ：利用シーン・事例 ─── */
@@ -387,12 +387,36 @@ export default function HomePage() {
                 <FadeIn direction="up" delay={0.15} duration={2.0}>
                   <div className="max-w-[460px] space-y-5 text-xs sm:text-base text-[#4a4a4a] leading-loose">
                     <p>
-                      就労での悩みや、普段の生活で不安が多くなかなか眠れないなど、精神的に不安定になることがあるかと思います。ご本人も、そして支えるご家族も、時には疲れを感じてしまうことがあるかもしれません。
+                      私たち訪問看護ステーション ミライズは、地域で暮らす障害のあるお子さまから大人の方まで、ご本人の想いやご家族の願いに寄り添いながら、
+                      <span className="font-bold text-[#EC99D0]">その人らしい未来</span>
+                      を一緒に育んでいく支援を大切にしています。
                     </p>
                     <p>
-                      私たち「ミライズ」は、そんな不安な夜や、迷いのある日々に寄り添うために生まれました。富山の地で、誰もが「自分らしく、満足のいく暮らし」を続けられるよう、私たちがあなたの街の
-                      <span className="font-bold text-[#B3AEDB]">「家族のような専門家」</span>
-                      になります。
+                      日々の生活の中で感じる不安や悩みに耳を傾け、ご本人が安心して自分らしく過ごせるよう、ご家族や関係する支援者の皆さまと力を合わせながら、
+                      <span className="font-bold text-[#B3AEDB]">継続したサポート</span>
+                      を行います。
+                    </p>
+                    <p>
+                      一人ひとりの
+                      <span className="font-bold text-[#B3AEDB]">「できること」</span>
+                      や
+                      <span className="font-bold text-[#B3AEDB]">「やってみたい気持ち」</span>
+                      を大切にし、小さな成長や変化を共に喜びながら、これからの可能性を広げていくお手伝いをいたします。
+                    </p>
+                    <p>
+                      ミライズは、ご本人・ご家族・支援者の皆さまにとって、いつでも相談できる身近な存在として、
+                      <span
+                        className="font-bold"
+                        style={{
+                          backgroundImage: "var(--brand-gradient)",
+                          WebkitBackgroundClip: "text",
+                          backgroundClip: "text",
+                          color: "transparent",
+                        }}
+                      >
+                        安心と希望を届ける伴走者
+                      </span>
+                      であり続けます。
                     </p>
                   </div>
                 </FadeIn>
@@ -534,7 +558,7 @@ export default function HomePage() {
                               対象エリア
                             </p>
                             <p className="text-xs sm:text-base font-bold text-[#3a3a3a] leading-relaxed">
-                              {["富山市", "射水市", "砺波市", "滑川市", "魚津市", "黒部市", "南砺市"].flatMap((c, i) =>
+                              {["富山市", "射水市", "砺波市", "南砺市", "滑川市", "魚津市", "黒部市", "入善町"].flatMap((c, i) =>
                                 i > 0
                                   ? ["・", <span key={c} className="whitespace-nowrap">{c}</span>]
                                   : [<span key={c} className="whitespace-nowrap">{c}</span>]
@@ -685,7 +709,7 @@ export default function HomePage() {
                   gradient="var(--brand-gradient)"
                 />
                 <CharReveal
-                  text="訪問看護の、その先へ。"
+                  text="あなたの未来を支援します。"
                   className="text-base sm:text-xl font-bold text-[#9a9a9a] mb-1 sm:mb-2"
                   style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
                   delay={0.3}
@@ -827,8 +851,6 @@ export default function HomePage() {
                   一人で悩まず、まずは「ミライズ」とお話ししてみませんか？
                   <br />
                   ご相談・見学・採用への応募、医療機関・関連機関からの連携まで、LINEまたはお電話でお気軽にご連絡ください。
-                  <br />
-                  富山市・射水市・砺波市。あなたの街のすぐそばに、私たちがいます。
                 </p>
               </FadeIn>
 
@@ -959,9 +981,11 @@ export default function HomePage() {
                 </h2>
 
                 <p className="text-[10px] sm:text-base text-[#5a5a5a] leading-loose mb-8 max-w-[720px] mx-auto">
-                  「看護師である前に、一人の人間として」を大切に、<br className="sm:hidden" />あなたらしい柔軟な働き方を応援します。
+                  精神科での経験は、在宅の現場でこそ活きます。
                   <br />
-                  副業・ダブルワークや、未経験・ブランクの方も歓迎です。
+                  退院後の暮らしを環境ごと見直し、安心して過ごせる毎日を、少しずつ整えていく。
+                  <br />
+                  病棟ではできない支援を、一緒に作っていきましょう。
                 </p>
 
                 {/* 募集職種（左にラベル＋右にピルタグ） */}
