@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora, Cormorant_Garamond } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Zen_Maru_Gothic, Lora, Cormorant_Garamond, Zen_Kurenaido } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -38,6 +38,14 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400"],
   style: ["italic"],
   variable: "--font-cormorant",
+  display: "swap",
+});
+
+// ヒーローのポエム見出し用（硬筆・手書き風／やさしく語りかけるトーン）
+const zenKurenaido = Zen_Kurenaido({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-zen-kurenaido",
   display: "swap",
 });
 
@@ -108,7 +116,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable} ${cormorant.variable}`}
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${zenMaruGothic.variable} ${lora.variable} ${cormorant.variable} ${zenKurenaido.variable}`}
     >
       <body className="font-[var(--font-noto-sans-jp)] antialiased text-[#231F20] min-h-screen flex flex-col">
         {/* ── 背景：白〜薄紫のやわらかいグラデーション（デザインコンセプト基調） ── */}

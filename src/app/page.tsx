@@ -591,28 +591,21 @@ export default function HomePage() {
 
                       {/* 右：マップ → ロゴ＋Googleマップ（右下／下端を左と揃える） */}
                       <div className="flex flex-col">
-                        {/* マップフレーム（正方形に近い・白枠は細め） */}
+                        {/* 事業所写真フレーム（正方形に近い・白枠は細め／Googleマップは下のボタンから） */}
                         <div className="bg-white p-1.5 sm:p-4 rounded-[10px] shadow-[0_16px_34px_-10px_rgba(120,100,150,0.45)] ring-1 ring-black/5">
                           <div className="aspect-[4/3] rounded-md overflow-hidden">
-                            <iframe
-                              title="訪問看護ステーション ミライズ 所在地（富山市上袋650）"
-                              src="https://maps.google.com/maps?q=%E5%AF%8C%E5%B1%B1%E7%9C%8C%E5%AF%8C%E5%B1%B1%E5%B8%82%E4%B8%8A%E8%A2%8B650&z=16&output=embed"
-                              className="w-full h-full border-0"
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
+                            <Image
+                              src="/office-building.png"
+                              alt="訪問看護ステーション ミライズが入るサンコレクトG.SECONDビルの外観"
+                              width={2000}
+                              height={1495}
+                              className="w-full h-full object-cover"
                             />
                           </div>
                         </div>
 
                         {/* ロゴ＋Googleマップで開く（右下） */}
                         <div className="flex items-center justify-end gap-3 mt-auto pt-6">
-                          <Image
-                            src="/logo.png"
-                            alt="訪問看護ステーション ミライズ"
-                            width={240}
-                            height={120}
-                            className="h-12 sm:h-14 w-auto object-contain"
-                          />
                           <a
                             href="https://www.google.com/maps/search/?api=1&query=%E5%AF%8C%E5%B1%B1%E7%9C%8C%E5%AF%8C%E5%B1%B1%E5%B8%82%E4%B8%8A%E8%A2%8B650"
                             target="_blank"
@@ -620,8 +613,8 @@ export default function HomePage() {
                             className="group inline-flex items-center gap-2.5 text-[#4a4a4a] hover:text-[#84D3F4] transition-colors"
                           >
                             <span className="text-base font-bold" style={{ fontFamily: "var(--font-zen-maru-gothic)" }}>Googleマップ</span>
-                            <span className="w-10 h-10 rounded-full border-2 border-[#C9A9DF] flex items-center justify-center group-hover:border-[#84D3F4] group-hover:bg-[#84D3F4]/10 transition-colors">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <span className="w-12 h-12 rounded-full border-2 border-[#C9A9DF] flex items-center justify-center group-hover:border-[#84D3F4] group-hover:bg-[#84D3F4]/10 transition-colors">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M15 3h6v6" />
                                 <path d="M10 14 21 3" />
                                 <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />

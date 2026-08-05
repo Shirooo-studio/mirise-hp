@@ -55,7 +55,7 @@ export function HomeHero() {
         className="hidden lg:block absolute z-0 top-[2%] sm:top-[2%] right-0 lg:right-[2%] pointer-events-none"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.8, delay: 3.2, ease: EASE }}
+        transition={{ duration: 1.8, delay: 4.2, ease: EASE }}
       >
         <Image
           src="/hero-visual.png"
@@ -63,7 +63,7 @@ export function HomeHero() {
           width={1024}
           height={1024}
           priority
-          className="w-[min(72vw,900px)] h-auto"
+          className="w-[min(62vw,900px)] h-auto"
         />
       </motion.div>
 
@@ -73,7 +73,7 @@ export function HomeHero() {
         className="hidden lg:block absolute z-0 -bottom-8 -right-16 pointer-events-none"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.8, delay: 3.2, ease: EASE }}
+        transition={{ duration: 1.8, delay: 4.2, ease: EASE }}
       >
         <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="w-[min(76vw,800px)] h-auto" />
       </motion.div>
@@ -84,7 +84,7 @@ export function HomeHero() {
         className="hidden lg:block absolute z-0 bottom-4 left-0 w-[min(54vw,760px)] pointer-events-none"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.6, delay: 3.2, ease: EASE }}
+        transition={{ duration: 1.6, delay: 4.2, ease: EASE }}
       >
         <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="w-full h-auto" />
       </motion.div>
@@ -93,16 +93,28 @@ export function HomeHero() {
       <div className="relative z-10 w-full max-w-[1100px] mx-auto">
         <div className="max-w-[720px]">
           <h1
-            className="font-bold text-[#231F20] leading-[1.7] text-[2rem] sm:text-[3.9rem] sm:whitespace-nowrap"
-            style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
+            className="text-[2.05rem] sm:text-[3.95rem] leading-[1.95] sm:whitespace-nowrap"
+            style={{
+              fontFamily: "var(--font-zen-kurenaido)",
+              // 真っ黒を避けたやわらかい黒
+              color: "#2b2b2b",
+              // ゆったりした行間＋少し広めの字間
+              letterSpacing: "0.045em",
+              // Zen Kurenaidoは1ウェイト(400)のため、ごく細い輪郭でweight 500〜600相当の見え方に
+              fontWeight: 500,
+              WebkitTextStroke: "0.4px #2b2b2b",
+              paintOrder: "stroke",
+            }}
           >
             {poemLines.map((line, i) => (
               <motion.span
                 key={i}
-                className="block"
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.8, delay: 0.4 + i * 0.9, ease: EASE }}
+                className="block w-fit"
+                style={{ willChange: "clip-path" }}
+                // 左→右へワイプ：ペンで書いていくように行が現れる
+                initial={{ clipPath: "inset(0 100% -0.2em 0)" }}
+                animate={{ clipPath: "inset(0 0% -0.2em 0)" }}
+                transition={{ duration: 1.15, delay: 0.5 + i * 1.15, ease: [0.5, 0, 0.25, 1] }}
               >
                 {line.map((seg, k) => (
                   <span key={k} style={seg.c ? { color: seg.c } : undefined}>
@@ -118,7 +130,7 @@ export function HomeHero() {
             style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 3.2, ease: EASE }}
+            transition={{ duration: 1.6, delay: 4.2, ease: EASE }}
           >
             ご本人・ご家族、そしてお子様の
             <br className="lg:hidden" />
@@ -132,7 +144,7 @@ export function HomeHero() {
             className="lg:hidden relative mx-auto -mt-6 w-full max-w-[480px] aspect-[7/6]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 3.4, ease: EASE }}
+            transition={{ duration: 1.6, delay: 4.4, ease: EASE }}
           >
             {/* 雲＋ラベンダー（左下・背面） */}
             <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="absolute z-0 bottom-[4%] -left-[7%] w-[66%] h-auto" />
@@ -182,7 +194,7 @@ export function HomeHero() {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.4, delay: 3.8, ease: EASE }}
+        transition={{ duration: 1.4, delay: 4.8, ease: EASE }}
       >
         <span
           className="w-px h-14 sm:h-16"
