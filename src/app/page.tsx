@@ -7,7 +7,7 @@ import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { LINE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "訪問看護ステーションミライズ | 富山の精神・療育専門訪問看護",
+  title: "訪問看護ステーションミライズ｜精神科訪問看護に特化した訪問看護",
   description:
     "富山市・射水市・砺波市対応。ご本人・ご家族・お子様の「自分らしい未来」を支える訪問看護ステーション。就労支援・精神的ケア・服薬管理・レスパイト対応。24時間365日サポート。",
   alternates: { canonical: "/" },

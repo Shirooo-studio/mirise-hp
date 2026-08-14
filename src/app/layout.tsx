@@ -55,7 +55,7 @@ const SITE_DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "訪問看護ステーションミライズ｜富山の精神・療育専門訪問看護",
+    default: "訪問看護ステーションミライズ｜精神科訪問看護に特化した訪問看護",
     template: "%s｜訪問看護ステーションミライズ（富山）",
   },
   description: SITE_DESCRIPTION,
@@ -83,13 +83,13 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "訪問看護ステーションミライズ｜富山の精神・療育専門訪問看護",
+    title: "訪問看護ステーションミライズ｜精神科訪問看護に特化した訪問看護",
     description: SITE_DESCRIPTION,
     images: [{ url: "/logo.png", width: 512, height: 512, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary",
-    title: "訪問看護ステーションミライズ｜富山",
+    title: "訪問看護ステーションミライズ｜精神科訪問看護に特化した訪問看護",
     description: SITE_DESCRIPTION,
     images: ["/logo.png"],
   },
