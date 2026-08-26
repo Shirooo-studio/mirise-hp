@@ -79,40 +79,34 @@ const features = [
 /* ─── データ：利用シーン・事例 ─── */
 const cases = [
   {
-    tag: "難病・一般看護",
-    color: "#EC99D0",
-    title: "退院後の生活を安定させたい",
-    desc: "医療機器の管理や体調管理を行い、住み慣れた環境で安心して過ごせるよう調整します。",
-  },
-  {
     tag: "精神・就労",
+    color: "#EC99D0",
+    title: "就労、デイを継続できない",
+    desc: "対人ストレス、仕事がうまくいかず自己嫌悪になる、身体疲労などにより休みがちになってしまう。",
+  },
+  {
+    tag: "精神・自傷",
     color: "#B3AEDB",
-    title: "就労やデイの送り出しを支えてほしい",
-    desc: "精神状態や体調の管理を行い、就労やデイサービスを安心して続けられるよう支援します。",
+    title: "自傷行為を繰り返す",
+    desc: "過去のフラッシュバックや激しい不安、怒り、孤独感、強い自己嫌悪などを上手く言葉で伝えられない。",
   },
   {
-    tag: "精神・在宅安定",
+    tag: "服薬管理",
     color: "#84D3F4",
-    title: "再入院を繰り返している",
-    desc: "病気の再発や精神状態の不安定さで入退院を繰り返している方の、在宅での安定を図ります。",
+    title: "服薬の飲み忘れ・過剰服薬してしまう",
+    desc: "症状が良くなると自己判断で薬をやめてしまう。不安から薬をまとめて飲んでしまう。",
   },
   {
-    tag: "社会参加",
+    tag: "生活支援",
     color: "#9EDED0",
-    title: "引きこもりがちで社会とのつながりが薄い",
-    desc: "定期的にお伺いしてお話を伺い、社会とのつながりを保ちながら、少しずつ活動範囲を広げていきます。",
+    title: "セルフケアができなくなる",
+    desc: "部屋の片付けやゴミ出し、入浴、食事の準備ができなくなる。ゴミ屋敷状態になってしまう。",
   },
   {
-    tag: "ご家族・レスパイト",
-    color: "#C9914A",
-    title: "家族だけでの対応に限界を感じている",
-    desc: "ご家族の負担を分かち合い、休息と笑顔を取り戻すお手伝いをします。お悩みをじっくり伺います。",
-  },
-  {
-    tag: "小児・放デイ連携",
-    color: "#E058A8",
-    title: "お子様の成長を支えてほしい",
-    desc: "ご自宅はもちろん、放課後等デイサービス等への訪問を通じて、お子様の個性を伸ばし、集団生活を支えるお手伝いをします。",
+    tag: "社会参加・孤立",
+    color: "#9B93D6",
+    title: "対人関係のトラブル・社会的に孤立してしまう",
+    desc: "外出を拒み、ひきこもり、家族以外と話さなくなる。家族にも暴言や暴力がある。",
   },
 ];
 
@@ -259,7 +253,7 @@ export default function HomePage() {
                     gradient="var(--brand-gradient)"
                   />
                   <CharReveal
-                    text="このような時、ぜひご相談ください"
+                    text="こんなお悩みありませんか？"
                     className="text-base sm:text-xl font-bold text-[#9a9a9a] mb-1 sm:mb-2"
                     style={{ fontFamily: "var(--font-zen-maru-gothic)" }}
                     delay={0.28}
@@ -282,11 +276,11 @@ export default function HomePage() {
             </div>
 
             <StaggerContainer
-              className="flex lg:grid lg:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [scroll-snap-type:x_mandatory] lg:[scroll-snap-type:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-5 sm:gap-6 overflow-x-auto pb-2 [scroll-snap-type:x_mandatory] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               staggerDelay={0.2}
             >
-              {cases.slice(0, 3).map((c, i) => (
-                <StaggerItem key={c.title} className="flex-none w-[250px] sm:w-[300px] lg:w-auto [scroll-snap-align:start]">
+              {cases.slice(0, 5).map((c, i) => (
+                <StaggerItem key={c.title} className="flex-none w-[250px] sm:w-[300px] [scroll-snap-align:start]">
                   <div className="h-full rounded-3xl bg-white border border-[#efe7f7] shadow-sm overflow-hidden flex flex-col">
                     {/* 上部：色面（画像の代わり） */}
                     <div
@@ -387,24 +381,20 @@ export default function HomePage() {
                 <FadeIn direction="up" delay={0.15} duration={2.0}>
                   <div className="max-w-[460px] space-y-5 text-xs sm:text-base text-[#4a4a4a] leading-loose">
                     <p>
-                      私たち訪問看護ステーション ミライズは、地域で暮らす障害のあるお子さまから大人の方まで、ご本人の想いやご家族の願いに寄り添いながら、
-                      <span className="font-bold text-[#EC99D0]">その人らしい未来</span>
-                      を一緒に育んでいく支援を大切にしています。
+                      私たち訪問看護ステーション ミライズは、精神的な不調や心の病を抱えながら地域で暮らす方に寄り添い、
+                      <span className="font-bold text-[#EC99D0]">その人らしい生活と未来</span>
+                      を支えていく精神科訪問看護ステーションです。
                     </p>
                     <p>
-                      日々の生活の中で感じる不安や悩みに耳を傾け、ご本人が安心して自分らしく過ごせるよう、ご家族や関係する支援者の皆さまと力を合わせながら、
-                      <span className="font-bold text-[#B3AEDB]">継続したサポート</span>
-                      を行います。
+                      病気や症状だけを見るのではなく、ご本人が抱えている不安や悩み、生活上の困りごとに耳を傾け、一人ひとりの
+                      <span className="font-bold text-[#B3AEDB]">「こうなりたい」「こんな生活を送りたい」</span>
+                      という思いを大切にしながら支援します。
                     </p>
                     <p>
-                      一人ひとりの
-                      <span className="font-bold text-[#B3AEDB]">「できること」</span>
-                      や
-                      <span className="font-bold text-[#B3AEDB]">「やってみたい気持ち」</span>
-                      を大切にし、小さな成長や変化を共に喜びながら、これからの可能性を広げていくお手伝いをいたします。
+                      「こんなことを相談してもいいのかな」という小さな悩みでも構いません。
                     </p>
                     <p>
-                      ミライズは、ご本人・ご家族・支援者の皆さまにとって、いつでも相談できる身近な存在として、
+                      一人で抱え込まず、ご本人のペースを大切にしながら、安心して自分らしく暮らせるように。ミライズは、
                       <span
                         className="font-bold"
                         style={{
@@ -414,9 +404,9 @@ export default function HomePage() {
                           color: "transparent",
                         }}
                       >
-                        安心と希望を届ける伴走者
+                        身近な相談相手として、ともに考え、ともに歩む
                       </span>
-                      であり続けます。
+                      精神科訪問看護を提供します。
                     </p>
                   </div>
                 </FadeIn>

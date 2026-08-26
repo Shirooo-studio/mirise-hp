@@ -52,7 +52,7 @@ export function HomeHero() {
 
       {/* ══════ 右奥のイラスト（PCのみ・背面・右詰・大きめ／モバイルは文章下にブロック配置） ══════ */}
       <motion.div
-        className="hidden lg:block absolute z-0 top-[2%] sm:top-[2%] right-0 lg:right-[2%] pointer-events-none"
+        className="hidden lg:block absolute z-0 top-[8%] sm:top-[14%] right-0 lg:right-[2%] pointer-events-none"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.8, delay: 4.2, ease: EASE }}
@@ -68,6 +68,7 @@ export function HomeHero() {
       </motion.div>
 
       {/* ══════ 山と雲（ヒーロー右下・PCのみ） ══════ */}
+      {/* 非表示中：再表示する場合はこのコメントを外す
       <motion.div
         aria-hidden
         className="hidden lg:block absolute z-0 -bottom-8 -right-16 pointer-events-none"
@@ -77,8 +78,10 @@ export function HomeHero() {
       >
         <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="w-[min(76vw,800px)] h-auto" />
       </motion.div>
+      */}
 
       {/* ══════ 雲＋ラベンダーの装飾（ポエム下・左下・PCのみ） ══════ */}
+      {/* 非表示中：再表示する場合はこのコメントを外す
       <motion.div
         aria-hidden
         className="hidden lg:block absolute z-0 bottom-4 left-0 w-[min(54vw,760px)] pointer-events-none"
@@ -88,12 +91,13 @@ export function HomeHero() {
       >
         <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="w-full h-auto" />
       </motion.div>
+      */}
 
       {/* ══════ ポエム（前面・左寄せ・改行させない） ══════ */}
       <div className="relative z-10 w-full max-w-[1100px] mx-auto">
         <div className="max-w-[720px]">
           <h1
-            className="text-[2.05rem] sm:text-[3.95rem] leading-[1.95] sm:whitespace-nowrap"
+            className="text-[1.7rem] sm:text-[3.95rem] leading-[1.95] sm:whitespace-nowrap"
             style={{
               fontFamily: "var(--font-zen-kurenaido)",
               // 真っ黒を避けたやわらかい黒
@@ -132,11 +136,17 @@ export function HomeHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 4.2, ease: EASE }}
           >
-            ご本人・ご家族、そしてお子様の
-            <br className="lg:hidden" />
-            「自分らしい未来」を、
+            病気や障がいがあっても、
             <br />
-            富山で、ミライズがそばで支えます。
+            住み慣れた場所で、自分らしく。
+            <br />
+            <br />
+            ミライズは、ご本人とご家族の「これから」に寄り添い、
+            <br />
+            安心して暮らせる毎日を支えます。
+            <br />
+            <br />
+            あなたの「こうしたい」を、一緒に。
           </motion.p>
 
           {/* モバイル：ヒーローのシーン（hero-visual＋mountain-cloud＋cloud-decor を同じ位置関係で配置） */}
@@ -146,10 +156,10 @@ export function HomeHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.6, delay: 4.4, ease: EASE }}
           >
-            {/* 雲＋ラベンダー（左下・背面） */}
-            <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="absolute z-0 bottom-[4%] -left-[7%] w-[66%] h-auto" />
-            {/* 山と雲（右下・背面） */}
-            <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="absolute z-20 bottom-0 -right-[20%] w-[84%] h-auto" />
+            {/* 雲＋ラベンダー（左下・背面）／非表示中：再表示する場合は次行のコメントを外す */}
+            {/* <Image src="/cloud-decor.png" alt="" width={1200} height={520} className="absolute z-0 bottom-[4%] -left-[7%] w-[66%] h-auto" /> */}
+            {/* 山と雲（右下・背面）／非表示中：再表示する場合は次行のコメントを外す */}
+            {/* <Image src="/mountain-cloud.png" alt="" width={1200} height={520} className="absolute z-20 bottom-0 -right-[20%] w-[84%] h-auto" /> */}
             {/* 看護師とお子さま（前面・右上） */}
             <Image src="/hero-visual.png" alt="看護師とお子さま" width={1024} height={1024} className="absolute -z-10 -top-[6%] -right-[10%] w-[98%] h-auto" />
           </motion.div>
